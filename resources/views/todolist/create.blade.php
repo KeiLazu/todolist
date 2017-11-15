@@ -19,9 +19,12 @@
         {!! Form::hidden('user_id', Auth::user()->id) !!}
         
             Title:<br>
-            {!! Form::text('title', NULL) !!}<br><br>
+            {!! Form::text('title', NULL) !!}<br>
+             <div class="text-danger">{{$errors->first('title')}}</div>
+            <br><br>
             Container:<br>
-            <textarea value="" class="form-control editor" name="container" rows="10" cols="50"></textarea>
+            <textarea value="" class="form-control editor" name="container" rows="10" cols="50"></textarea><br>
+            <div class="text-danger">{{$errors->first('container')}}</div>
             <br><br>
             Status:<br>
             {!! Form::radio('status', 0, TRUE) !!}

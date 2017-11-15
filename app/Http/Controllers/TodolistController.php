@@ -6,6 +6,7 @@ use Auth;
 use App\todolist;
 use App\UserDetail;
 use Illuminate\Http\Request;
+use App\Http\Requests\TodolistRequest;
 use Maatwebsite\Excel\Facades\Excel;
 use PDF;
 
@@ -58,12 +59,12 @@ class TodolistController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TodolistRequest $request)
     {
         todolist::create($request->all());
         // dd($request->all());
         // $insertTodolist->save();
-        return redirect()->route('todolist.index');
+        return redirect('todolist')->with("success", "To-do list has been saved");
     }
 
     /**
@@ -107,12 +108,13 @@ class TodolistController extends Controller
      * @param  \App\todolist  $todolist
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, todolist $todolist)
+    public function update(TodolistRequest $request, todolist $todolist)
     {
         $todolisting = todolist::where('id', $todolist->id)->first()
         ->update($request->all());
+        $todolist = todolist::where('id', $todolist->id)->first();
         // dd($todolisting);
-        return redirect()->route('todolist.index');
+        return redirect('todolist/'.$todolist->id)->with("success", "To-do list has been updated");
     }
 
     /**

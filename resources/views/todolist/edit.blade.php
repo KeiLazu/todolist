@@ -9,18 +9,25 @@
         href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" 
         integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" 
         crossorigin="anonymous">
+        <link rel="stylesheet" href="/css/toastr.min.css">
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/toastr.min.js"></script>
 
     </head>
     <body>
     Details | {{$todolist->title}}<br><br>
+        @include('toast.message');
         <div class="container">
-        
         {!! Form::open(['method'=>'PUT', 'route'=>['todolist.update', $todolist->id]]) !!}
         {{method_field('PUT')}}
             Title:<br>
-            {!! Form::text('title', $todolist->title) !!}<br><br>
+            {!! Form::text('title', $todolist->title) !!}<br>
+            <div class="text-danger">{{$errors->first('title')}}</div>
+            <br><br>
             Container:<br>
             <textarea value="{{old('container')}}" class="form-control editor" name="container" rows="10" cols="50">{{$todolist->container}}</textarea>
+            <br>
+            <div class="text-danger">{{$errors->first('container')}}</div>
             <br><br>
             Status:<br>
             {!! Form::radio('status', 0, $todolist->status == 0 ? TRUE:FALSE) !!}

@@ -11,9 +11,12 @@
         href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" 
         integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" 
         crossorigin="anonymous">
-
+        <link rel="stylesheet" href="/css/toastr.min.css">
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/toastr.min.js"></script>
     </head>
     <body>
+    @include('toast.message')
         Todolist Index
         <div class="container">
           <div class="row align-items-center">
